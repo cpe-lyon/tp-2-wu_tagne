@@ -95,3 +95,16 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 
 ### Exercice 6. Le juste prix
 
+<html>#!/bin/bash <br>
+
+<html>RAM=$[$RANDOM%1000 | bc] <br>
+
+<html>echo -e "\nNombre aléatoire est $RAM" <br>
+
+<html>if [[ $1 > $RAM ]]; then <br>
+<html>    echo -e "\nC’est moins !" <br>
+<html>elif [[ $1 < $RAM ]]; then <br>
+<html>    echo -e "\nC’est plus !" <br>
+<html>else <br>
+<html>    echo -e "Gagné !" <br>
+<html>fi 
