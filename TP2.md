@@ -26,7 +26,7 @@ Oui, la variable My_VAR n'existe plus dans la session bash car elle est associé
 
 9. La commande **unset** supprime la variable donc pas d'espace mémoire pour la variable, alors que une variable peut exister mais n'a pas de contenu d'où il ya une allocation memoire  pour cette variable .
 
-10. la commande permettant d'écrire ceci: **echo '$HOME = '"$HOME" ** qui nous donne le résultat suivant: $HOME =/home/user.
+10. la commande permettant d'écrire ceci: **echo '$HOME = '"$HOME"** qui nous donne le résultat suivant: $HOME =/home/user.
 
 ## Programmation Bash
 
