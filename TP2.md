@@ -1,16 +1,16 @@
-### COMPTE RENDU  TP1
+##COMPTE RENDU  TP2
 
 ## Exercice 1. Variables d’environnement 
 
-1.  la commande  * printenv PATH*  permet  de trouver  les dossiers bash des commandes tapées par l’utilisateur , d'ou le resultat suivant :
+1.  la commande  * printenv PATH*  permet  de trouver  les dossiers bash des commandes tapées par l’utilisateur , d'ou le resultat suivant : <br>
  */usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin :/bin:/usr/games:/usr/local/games:/snap/bin*
    
 2. la variable  d’environnement *HOME* permet à la commande cd tapée sans argument de nous ramener dans notre répertoire personnel.
 
-3. la variable *LANG*  determine la langue  que  les logiciels utilisent pour  communiquer  avec l'utilisateur. comme nous sommes  des utilisateur francais  on retrouve  la valeur *fr_FR.UTF-8*.
-la variable *PWD*  contient le chemin du repertoire  courant qui est */home/user*
-la variable *OLDPWD*  contient le chemin  du repertoire precedent qui est */home*
-la variable *SHELL* contient  l'emplacement de l'interpréteur bash , obtient */bin/bash*
+3. la variable *LANG*  determine la langue  que  les logiciels utilisent pour  communiquer  avec l'utilisateur. comme nous sommes  des utilisateur francais  on retrouve  la valeur *fr_FR.UTF-8*. <br>
+la variable *PWD*  contient le chemin du repertoire  courant qui est */home/user* <br>
+la variable *OLDPWD*  contient le chemin  du repertoire precedent qui est */home* <br>
+la variable *SHELL* contient  l'emplacement de l'interpréteur bash , obtient */bin/bash* <br>
 la variable *_*  variable qui contient l'emplacement de la commande *printenv* , on obtient */user/bin/printenv*.
 
 4. on a creé la variable My_VAR avec la commande *MY_VAR="faby" * puis on a affiché le contenu avec *echo $My_VAR* , on obtient faby donc cette variable existe vraiment.
@@ -35,15 +35,15 @@ PATH="/HOME/user/scrip:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/
 
 #Exercice 2. Contrôle de mot de passe
 
-<html>#!/bin/bash
+<html>#!/bin/bash <br>
 
-<html>PASSWORD="ilovelinux"
-<html>read -s -p 'Rentre un mdp: ' PASSWORD_TEST
-<html>if [ "$PASSWORD_TEST" = "$PASSWORD" ]; then
-<html>    echo -e "\nMot de passe valide"
-<html>else
-<html>    echo -e "\nMot de passe invalide"
-<html>fi
+<html>PASSWORD="ilovelinux" <br>
+<html>read -s -p 'Rentre un mdp: ' PASSWORD_TEST <br>
+<html>if [ "$PASSWORD_TEST" = "$PASSWORD" ]; then <br>
+<html>    echo -e "\nMot de passe valide" <br>
+<html>else <br>
+<html>    echo -e "\nMot de passe invalide" <br>
+<html>fi <br>
 
 
 
