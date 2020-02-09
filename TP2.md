@@ -102,23 +102,25 @@ echo -e "\nFactorielle de $1= $fact"
 
 ### Exercice 6. Le juste prix
 ```shell
-#!/bin/bash
+#!/bin/bash 
 
-RAM=$[$RANDOM%1000 | bc] # ici on genère un nombre compris entre  1 et 1000 en utilisant bc qui se charge de faire la géneartion du nombre 
+RAM=$[$RANDOM%1000 | bc] 
 
 echo -e "\nNombre aléatoire est $RAM" 
-nombre=0 #on donne une valeur qui ne pourra pas etre le nombre généré 
-while [ $RAM -ne $nombre ]  #on compare  le nombre genéré et le nombre tapé 
+nombre=0
+
+while [ $RAM -ne $nombre ] 
 do
-read -p ' saisissez un nombre :' nombre   #on demande à l'utilisateur d'entrer un nombre 
-if [ $nombre -gt $RAM ]; then 
-    echo -e "\nC’est moins !" 
-elif [ $nombre -lt $RAM ]; then
-    echo -e "\nC’est plus !"
-else 
-    echo -e "Gagné !" 
-fi
-done
+	read -p ' saisissez un nombre :'  nombre
+	if [ $nombre  -gt $RAM ]; then 
+	   echo -e "\nC’est moins !" 
+	elif [ $nombre -lt $RAM ]; then 
+	  echo -e "\nC’est plus !" 
+	else 
+	   echo -e "Gagné !" 
+	   exit 
+	fi 
+done 
 ```
 
 
