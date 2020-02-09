@@ -5,7 +5,7 @@
 1.  la commande  **printenv PATH**  permet  de trouver  les dossiers bash des commandes tapées par l'utilisateur , d'ou le resultat suivant : <br>
  **/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin :/bin:/usr/games:/usr/local/games:/snap/bin**
    
-2. la variable  d’environnement **HOME** permet à la commande cd tapée sans argument de nous ramener dans notre répertoire personnel.
+2. la variable  d'environnement **HOME** permet à la commande cd tapée sans argument de nous ramener dans notre répertoire personnel.
 
 3. la variable *LANG*  determine la langue que les logiciels utilisent pour communiquer avec l'utilisateur. comme nous sommes  des utilisateur francais  on retrouve  la valeur *fr_FR.UTF-8*. <br>
 la variable **PWD**  contient le chemin du repertoire  courant qui est **/home/user** <br>
@@ -34,37 +34,38 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 **PATH="/HOME/user/scrip:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"**
 
 ### Exercice 2. Contrôle de mot de passe
-```
-<html>#!/bin/bash <br>
+```shell
+#!/bin/bash <br>
 
-<html>PASSWORD="ilovelinux" <br>
-<html>read -s -p 'Rentre un mdp: ' PASSWORD_TEST # -s -p pour que la saisie soit cachée et que le message saisi après soit affiché <br>
-<html>if [ "$PASSWORD_TEST" = "$PASSWORD" ]; then <br>
-<html>    echo -e "\nMot de passe valide" <br>
-<html>else <br>
-<html>    echo -e "\nMot de passe invalide" #Le -e du echo permet d'activer les retours à la ligne via \n. On n'oublie pas les $ des variables
- <br>
-<html>fi <br>
+PASSWORD="ilovelinux" <br>
+read -s -p 'Rentre un mdp: ' PASSWORD_TEST # -s -p pour que la saisie soit cachée et que le message saisi après soit affiché <br>
+if [ "$PASSWORD_TEST" = "$PASSWORD" ]; then <br>
+    echo -e "\nMot de passe valide" <br>
+else <br>
+    echo -e "\nMot de passe invalide" #Le -e du echo permet d'activer les retours à la ligne via \n. On n'oublie pas les $ des variables
+fi <br>
    ```
    ### Exercice 3. Expressions rationnelles 
-```
-<html>#!/bin/bash <br>
+```shell
+#!/bin/bash
 
-<html>function is_number() <br>
-<html>{ <br>
-<html>re='^[+-]?[0-9]+([.][0-9]+)?$' <br>
-<html>if ! [[ $1 =~ $re ]] ; then <br>
-<html>return 1 <br>
-<html>else <br>
-<html>return 0 <br>
-<html>fi <br>
-<html>} <br>
-<html> <br>
-<html>if [ is_number ]; then <br>
-<html>    echo -e "\nCe paramètre est un nombre réel" <br>
-<html>else <br>
-<html>    echo -e "\nsaisi incorrect" <br>
-<html>fi <br>
+function is_number()
+{
+re='^[+-]?[0-9]+([.][0-9]+)?$'
+if ! [[ $1 =~ $re ]] ; then
+return 1
+else
+return 0
+fi
+}
+
+is_number $1
+
+if [[ $? == 0 ]]; then
+    echo -e "\nCe paramètre est un nombre réel"
+else
+    echo -e "\nsaisi incorrect"
+fi
 ```
 
 
