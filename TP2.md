@@ -65,21 +65,21 @@ if [[ $? == 0 ]]; then
     echo -e "\nCe paramètre est un nombre réel"
 else
     echo -e "\nsaisi incorrect"
-fi
+fi 
+#L'important ici est de comprendre que $? retourne le résultat de la dernière opération effectuée, ici le résultat de is_number. On aurait aussi pu remplacer les “return” par des “echo” dans la fonction is_number et mettre directement “$(is_number $1) = 0” comme test du if pour écrire une ligne de moins
 ```
-
 
 ### Exercice 4. Contrôle d’utilisateur
 ```shell
-#!/bin/bash <br>
+#!/bin/bash 
 
 nom_du_script=$0  # on recupère le nom du  script
 nom_utilisateur=$1 # on recupère le premier paramètre 
 
 if  [ -z "$nom_utilisateur" ]; then #  on verifie  si  la chaine de caractère est vide 
 echo "Utilisation : $nom_du_script nom_utilisateur"
-exit<br> 
-fi <br>
+exit 
+fi 
 if id -u $1 >/dev/null 2>&1; then  # on verifie si l'utilisateur existe  ou pas
         echo -e "\nUtilisateur existe!" 
 else
@@ -104,15 +104,15 @@ echo -e "\nFactorielle de $1= $fact"
 ```shell
 #!/bin/bash 
 
-RAM=$[$RANDOM%1000 | bc] 
+RAM=$[$RANDOM%1000 | bc]  # on genère un nombre aléatoire  avec la commande RANDOM et la commande bc qui permet d'executer les opérations arithmetique .
 
-echo -e "\nNombre aléatoire est $RAM" 
+echo -e "\nNombre aléatoire est $RAM" # on affiche celapour tester si notre code mache bien  
 nombre=0
 
-while [ $RAM -ne $nombre ] 
+while [ $RAM -ne $nombre ]  # compare avec -ne   les nombre genéré et le nombre entré par l'utilisateur 
 do
-	read -p ' saisissez un nombre :'  nombre
-	if [ $nombre  -gt $RAM ]; then 
+	read -p ' saisissez un nombre :'  nombre # on demande à l'utilisateur d'entré  un nombre 
+	if [ $nombre  -gt $RAM ]; then          # on utilise gt et lt pour comparer les deux nombres 
 	   echo -e "\nC’est moins !" 
 	elif [ $nombre -lt $RAM ]; then 
 	  echo -e "\nC’est plus !" 
