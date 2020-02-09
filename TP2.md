@@ -37,13 +37,13 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 ```shell
 #!/bin/bash <br>
 
-PASSWORD="ilovelinux" <br>
-read -s -p 'Rentre un mdp: ' PASSWORD_TEST # -s -p pour que la saisie soit cachée et que le message saisi après soit affiché <br>
-if [ "$PASSWORD_TEST" = "$PASSWORD" ]; then <br>
-    echo -e "\nMot de passe valide" <br>
-else <br>
+PASSWORD="ilovelinux" 
+read -s -p 'Rentre un mdp: ' PASSWORD_TEST # -s -p pour que la saisie soit cachée et que le message saisi après soit affiché
+if [ "$PASSWORD_TEST" = "$PASSWORD" ]; then 
+    echo -e "\nMot de passe valide" 
+else 
     echo -e "\nMot de passe invalide" #Le -e du echo permet d'activer les retours à la ligne via \n. On n'oublie pas les $ des variables
-fi <br>
+fi 
    ```
    ### Exercice 3. Expressions rationnelles 
 ```shell
@@ -70,96 +70,97 @@ fi
 
 
 ### Exercice 4. Contrôle d’utilisateur
-```
-<html>#!/bin/bash <br>
-<html>
-<html>nom_du_script=$0  # on recupère le nom du  script <br>
-<html>nom_utilisateur=$1 # on recupère le premier paramètre  <br>
-<html>
-<html>if  [ -z "$nom_utilisateur" ]; then #  on verifie  si  la chaine de caractère est vide <br>
-<html>echo "Utilisation : $nom_du_script nom_utilisateur"<br>
-<html>exit<br> 
-<html>fi <br>
-<html>if id -u $1 >/dev/null 2>&1; then  # on verifie si l'utilisateur existe  ou pas <br>
-<html>        echo -e "\nUtilisateur existe!" <br>
-<html>else
-<html>        echo -e "\nUtilisateur  n'existe pas! " <br>
-<html>fi <br>
+```shell
+#!/bin/bash <br>
+
+nom_du_script=$0  # on recupère le nom du  script
+nom_utilisateur=$1 # on recupère le premier paramètre 
+
+if  [ -z "$nom_utilisateur" ]; then #  on verifie  si  la chaine de caractère est vide 
+echo "Utilisation : $nom_du_script nom_utilisateur"
+exit<br> 
+fi <br>
+if id -u $1 >/dev/null 2>&1; then  # on verifie si l'utilisateur existe  ou pas
+        echo -e "\nUtilisateur existe!" 
+else
+        echo -e "\nUtilisateur  n'existe pas! " 
+fi 
 ```
 
 
 ### Exercice 5. Factorielle
-```
-<html>#!/bin/bash <br>
-<html>fact=1 <br>
-<html>for i in $(seq 1 $1)  # on recupère les nombres compris entre 1 et le nombre dont on veux le factoriel <br>
-<html>do  <br>
-<html>    fact=$[fact*i]  # on fait une multiplication recursive  jusqu'à ce que on arrive  sur le nombre donc on veut le factorielle <br>
-<html>done <br>
-<html>echo -e "\nFactorielle de $1= $fact" 
+```shell
+#!/bin/bash
+fact=1 
+for i in $(seq 1 $1)  # on recupère les nombres compris entre 1 et le nombre dont on veux le factoriel 
+do  <br>
+    fact=$[fact*i]  # on fait une multiplication recursive  jusqu'à ce que on arrive  sur le nombre donc on veut le factorielle 
+done 
+echo -e "\nFactorielle de $1= $fact" 
 ```
 
 
 ### Exercice 6. Le juste prix
-```
-<html>#!/bin/bash <br>
+```shell
+#!/bin/bash
 
-<html>RAM=$[$RANDOM%1000 | bc] # ici on genère un nombre compris entre  1 et 1000 en utilisant bc qui se charge de faire la géneartion du nombre <br>
+RAM=$[$RANDOM%1000 | bc] # ici on genère un nombre compris entre  1 et 1000 en utilisant bc qui se charge de faire la géneartion du nombre 
 
-<html>echo -e "\nNombre aléatoire est $RAM" <br>
-<html>#nombre=0 on donne une valeur qui ne pourra pas etre le nombre généré <br>
-<html>#while [ $RAM -ne $nombre ]  on compare  le nombre genéré et le nombre tapé <br>
-<html>#do<br>
-<html>read -p ' saisissez un nombre :' nombre # on demande à l'utilisateur d'entrer un nombre  <br
-<html>if [ $nombre -gt $RAM ]; then <br> 
-<html>    echo -e "\nC’est moins !" <br>
-<html>elif [ $nombre -lt $RAM ]; then <br>
-<html>    echo -e "\nC’est plus !" <br>
-<html>else <br>
-<html>    echo -e "Gagné !" <br>
-<html>fi<br>
-<html>#done
+echo -e "\nNombre aléatoire est $RAM" 
+nombre=0 #on donne une valeur qui ne pourra pas etre le nombre généré 
+while [ $RAM -ne $nombre ]  #on compare  le nombre genéré et le nombre tapé 
+do
+read -p ' saisissez un nombre :' nombre   #on demande à l'utilisateur d'entrer un nombre 
+if [ $nombre -gt $RAM ]; then 
+    echo -e "\nC’est moins !" 
+elif [ $nombre -lt $RAM ]; then
+    echo -e "\nC’est plus !"
+else 
+    echo -e "Gagné !" 
+fi
+done
 ```
 
 
 ### Exercice 7. Statistiques
-```
-<html>#!/bin/bash<br>
+```shell
+#!/bin/bash
 
-<html>checkInt(){<br>
-<html>       expr $1 + 0 &>/dev/null<br>
-<html>     [ $? -ne 0 ] && { echo "parametre $1 doit etre entier!";exit 1; }<br>
-<html> }<br>
-<html> checkInt1(){<br>
-<html>         tmp=`echo $1 |sed 's/[0-9]//g'`<br>
-<html>         [ -n "${tmp}" ]&& { echo "parametre $1 doit etre entier!";exit 1; }<br>
-<html> }<br>
+checkInt(){
+        expr $1 + 0 &>/dev/null
+        [ $? -ne 0 ] && { echo "parametre $1 doit etre entier!";exit 1; }
+}
+checkInt1(){
+        tmp=`echo $1 |sed 's/[0-9]//g'`
+        [ -n "${tmp}" ]&& { echo "parametre $1 doit etre entier!";exit 1; }
+}
 
-<html> read -p 'saisiez 3 entiers entre -100 et 100(séparez avec espase)' a b c <br>
+read -p 'saisiez 3 entiers entre -100 et 100(séparez avec espase)' a b c 
 
-<html> min=$a<br>
-<html> middle=$b<br>
-<html> max=$c<br>
-<html> tmp=0<br>
+min=$a
+middle=$b
+max=$c
+tmp=0
 
-<html> checkInt $a<br>
-<html> checkInt1 $b<br>
-<html> checkInt1 $c<br>
+checkInt $a
+checkInt1 $b
+checkInt1 $c
 
-<html> if [[ $min > $middle ]]; then<br>
-<html> 	tmp=$min;<br>
-<html> 	min=$middle;<br>
-<html> 	middle=$tmp;<br>
-<html> fi<br>
-<html> if [[ $min > $max ]]; then<br>
-<html> 	tmp=$min;<br>
-<html> 	min=$max;<br>
-<html> 	max=$tmp;<br>
-<html> fi<br>
-<html> if [[ $middle > $max ]]; then<br>
-<html> 	tmp=$middle;<br>
-<html> 	middle=$max;<br>
-<html> 	max=$tmp;<br>
-<html> fi<br>
-<html> echo -e "\nLe max est $max, le min est $min, la moyenne est $(( ($a + $b + $c) / 3))"<br>
+if [[ $min > $middle ]]; then
+	tmp=$min;
+	min=$middle;
+	middle=$tmp;
+fi
+if [[ $min > $max ]]; then
+	tmp=$min;
+	min=$max;
+	max=$tmp;
+fi
+if [[ $middle > $max ]]; then
+	tmp=$middle;
+	middle=$max;
+	max=$tmp;
+fi
+echo -e "\nLe max est $max, le min est $min, la moyenne est $(( ($a + $b + $c) / 3))"
+
 ```
