@@ -121,42 +121,42 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 
 ### Exercice 7. Statistiques
 
-<html#!/bin/bash<br>
+<html>#!/bin/bash<br>
 
-<htmlcheckInt(){<br>
- <html       expr $1 + 0 &>/dev/null<br>
-  <html      [ $? -ne 0 ] && { echo "parametre $1 doit etre entier!";exit 1; }<br>
-<html}<br>
-<htmlcheckInt1(){<br>
-<html        tmp=`echo $1 |sed 's/[0-9]//g'`<br>
-<html        [ -n "${tmp}" ]&& { echo "parametre $1 doit etre entier!";exit 1; }<br>
-<html}<br>
+<html>checkInt(){<br>
+<html>       expr $1 + 0 &>/dev/null<br>
+<html>     [ $? -ne 0 ] && { echo "parametre $1 doit etre entier!";exit 1; }<br>
+<html> }<br>
+<html> checkInt1(){<br>
+<html>         tmp=`echo $1 |sed 's/[0-9]//g'`<br>
+<html>         [ -n "${tmp}" ]&& { echo "parametre $1 doit etre entier!";exit 1; }<br>
+<html> }<br>
 
-<htmlread -p 'saisiez 3 entiers entre -100 et 100(séparez avec espase)' a b c <br>
+<html> read -p 'saisiez 3 entiers entre -100 et 100(séparez avec espase)' a b c <br>
 
-<htmlmin=$a<br>
-<htmlmiddle=$b<br>
-<htmlmax=$c<br>
-<htmltmp=0<br>
+<html> min=$a<br>
+<html> middle=$b<br>
+<html> max=$c<br>
+<html> tmp=0<br>
 
-<htmlcheckInt $a<br>
-<htmlcheckInt1 $b<br>
-<htmlcheckInt1 $c<br>
+<html> checkInt $a<br>
+<html> checkInt1 $b<br>
+<html> checkInt1 $c<br>
 
-<htmlif [[ $min > $middle ]]; then<br>
-<html	tmp=$min;<br>
-<html	min=$middle;<br>
-<html	middle=$tmp;<br>
-<htmlfi<br>
-<htmlif [[ $min > $max ]]; then<br>
-<html	tmp=$min;<br>
-<html	min=$max;<br>
-<html	max=$tmp;<br>
-<htmlfi<br>
-<htmlif [[ $middle > $max ]]; then<br>
-<html	tmp=$middle;<br>
-<html	middle=$max;<br>
-<html	max=$tmp;<br>
-<htmlfi<br>
-<htmlecho -e "\nLe max est $max, le min est $min, la moyenne est $(( ($a + $b + $c) / 3))"<br>
+<html> if [[ $min > $middle ]]; then<br>
+<html> 	tmp=$min;<br>
+<html> 	min=$middle;<br>
+<html> 	middle=$tmp;<br>
+<html> fi<br>
+<html> if [[ $min > $max ]]; then<br>
+<html> 	tmp=$min;<br>
+<html> 	min=$max;<br>
+<html> 	max=$tmp;<br>
+<html> fi<br>
+<html> if [[ $middle > $max ]]; then<br>
+<html> 	tmp=$middle;<br>
+<html> 	middle=$max;<br>
+<html> 	max=$tmp;<br>
+<html> fi<br>
+<html> echo -e "\nLe max est $max, le min est $min, la moyenne est $(( ($a + $b + $c) / 3))"<br>
 
