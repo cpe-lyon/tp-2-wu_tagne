@@ -38,11 +38,12 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 <html>#!/bin/bash <br>
 
 <html>PASSWORD="ilovelinux" <br>
-<html>read -s -p 'Rentre un mdp: ' PASSWORD_TEST <br>
+<html>read -s -p 'Rentre un mdp: ' PASSWORD_TEST # -s -p pour que la saisie soit cachée et que le message saisi après soit affiché <br>
 <html>if [ "$PASSWORD_TEST" = "$PASSWORD" ]; then <br>
 <html>    echo -e "\nMot de passe valide" <br>
 <html>else <br>
-<html>    echo -e "\nMot de passe invalide" <br>
+<html>    echo -e "\nMot de passe invalide" #Le -e du echo permet d'activer les retours à la ligne via \n. On n'oublie pas les $ des variables
+ <br>
 <html>fi <br>
    
    ### Exercice 3. Expressions rationnelles 
@@ -71,12 +72,17 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 
 <html>#!/bin/bash <br>
 <html>
-<html>nom_utilisateur=$(whoami) <br>
+<html>nom_du_script=$0  # on recupère le nom du  script <br>
+<html>nom_utilisateur=$1 # on recupère le premier paramètre  <br>
 <html>
-<html>if id -u $1 >/dev/null 2>&1; then <br>
+<html>if  [ -z "$nom_utilisateur" ]; then #  on verifie  si  la chaine de caractère est vide <br>
+<html>echo "Utilisation : $nom_du_script nom_utilisateur"<br>
+<html>exit<br> 
+<html>fi <br>
+<html>if id -u $1 >/dev/null 2>&1; then  # on verifie si l'utilisateur existe  ou pas <br>
 <html>        echo -e "\nUtilisateur existe!" <br>
 <html>else
-<html>        echo -e "\nUtilisation : $0 $nom_utilisateur" <br>
+<html>        echo -e "\nUtilisateur  n'existe pas! " <br>
 <html>fi <br>
 
 
@@ -85,9 +91,9 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 
 <html>#!/bin/bash <br>
 <html>fact=1 <br>
-<html>for i in $(seq 1 $1) <br>
+<html>for i in $(seq 1 $1)  # on recupère les nombres compris entre 1 et le nombre dont on veux le factoriel <br>
 <html>do  <br>
-<html>    fact=$[fact*i] <br>
+<html>    fact=$[fact*i]  # on fait une multiplication recursive  jusqu'à ce que on arrive  sur le nombre donc on veut le factorielle <br>
 <html>done <br>
 <html>echo -e "\nFactorielle de $1= $fact" 
 
@@ -97,14 +103,18 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 
 <html>#!/bin/bash <br>
 
-<html>RAM=$[$RANDOM%1000 | bc] <br>
+<html>RAM=$[$RANDOM%1000 | bc] # ici on genère un nombre compris entre  1 et 1000 en utilisant bc qui se charge de faire la géneartion du nombre <br>
 
 <html>echo -e "\nNombre aléatoire est $RAM" <br>
-
-<html>if [[ $1 > $RAM ]]; then <br>
+<html>#nombre=0 on donne une valeur qui ne pourra pas etre le nombre généré <br>
+<html>#while [ $RAM -ne $nombre ]  on compare  le nombre genéré et le nombre tapé <br>
+<html>#do<br>
+<html>read -p ' saisissez un nombre :' nombre # on demande à l'utilisateur d'entrer un nombre  <br
+<html>if [ $nombre -gt $RAM ]; then <br> 
 <html>    echo -e "\nC’est moins !" <br>
-<html>elif [[ $1 < $RAM ]]; then <br>
+<html>elif [ $nombre -lt $RAM ]; then <br>
 <html>    echo -e "\nC’est plus !" <br>
 <html>else <br>
 <html>    echo -e "Gagné !" <br>
-<html>fi 
+<html>fi<br>
+<html>#done<br>
