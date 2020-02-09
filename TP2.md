@@ -130,39 +130,39 @@ done
 
 checkInt(){
         expr $1 + 0 &>/dev/null
-        [ $? -ne 0 ] && { echo "parametre $1 doit etre entier!";exit 1; }
-}
+        [ $? -ne 0 ] && { echo "parametre $1 doit etre entier!";exit 1; } 
+} # checkInt permet de verifié si   le paramtre est un entier 
 checkInt1(){
         tmp=`echo $1 |sed 's/[0-9]//g'`
         [ -n "${tmp}" ]&& { echo "parametre $1 doit etre entier!";exit 1; }
-}
+} # checkInt1 permet de verifié si   le paramtre est un entier 
 
 read -p 'saisiez 3 entiers entre -100 et 100(séparez avec espase)' a b c 
 
 min=$a
 middle=$b
 max=$c
-tmp=0
+tmp=0 # on declare une variable provisoire 
 
 checkInt $a
 checkInt1 $b
 checkInt1 $c
 
-if [[ $min > $middle ]]; then
+if [[ $min > $middle ]]; then # on compare le min et la moyenne 
 	tmp=$min;
 	min=$middle;
 	middle=$tmp;
 fi
-if [[ $min > $max ]]; then
+if [[ $min > $max ]]; then #  on compare le min et le max 
 	tmp=$min;
 	min=$max;
 	max=$tmp;
 fi
-if [[ $middle > $max ]]; then
+if [[ $middle > $max ]]; then # on compare la moyenne  et le max 
 	tmp=$middle;
 	middle=$max;
 	max=$tmp;
 fi
-echo -e "\nLe max est $max, le min est $min, la moyenne est $(( ($a + $b + $c) / 3))"
+echo -e "\nLe max est $max, le min est $min, la moyenne est $(( ($a + $b + $c) / 3))" # on affiche le min , le max et la moyenne  qui est la somme des 3 variables a,b, et c divisée par 3.
 
 ```
