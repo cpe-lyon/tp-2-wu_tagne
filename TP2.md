@@ -13,28 +13,28 @@ la variable **OLDPWD**  contient le chemin  du repertoire precedent qui est **/h
 la variable **SHELL** contient  l'emplacement de l'interpréteur bash , obtient **/bin/bash** <br>
 la variable **_**  variable qui contient l'emplacement de la commande **printenv** , on obtient **/user/bin/printenv**.
 
-4. on a creé la variable MY_VAR avec la commande **MY_VAR="faby"** puis on a affiché le contenu avec **echo $My_VAR** , on obtient faby donc cette variable existe vraiment.
+4. on a creé la variable MY_VAR avec la commande `MY_VAR="faby"` puis on a affiché le contenu avec `echo $My_VAR` , on obtient faby donc cette variable existe vraiment.
 
 5. La commande bash n'affiche rien mais ouvre un interpreteur bash.
 Oui, la variable My_VAR n'existe plus dans la session bash car elle est associée localement la session precedente. pour sortir de la session bash on fait un exit .
 
-6. La commande **export My_VAR="faby"** permet de declarer MY_VAR comme une variable d'environnement et deslors cette vaiable est existe aussi dans la session  bash  on  y accede avec la  commande *printenv My_VAR*.
+6. La commande `export My_VAR="faby"` permet de declarer MY_VAR comme une variable d'environnement et deslors cette vaiable est existe aussi dans la session  bash  on  y accede avec la  commande `printenv My_VAR`.
 
-7. en créant la variable NOMS suivant la commande **export NOMS="TAGNE WU"** et en affichant NOMS avec la commande **printenv NOMS**, on a bien le contenu saisit des le depart à savoir  TAGNE WU.
+7. en créant la variable NOMS suivant la commande `export NOMS="TAGNE WU"` et en affichant NOMS avec la commande `printenv NOMS`, on a bien le contenu saisit des le depart à savoir  TAGNE WU.
 
-8. La commande **echo "Bonjour à vous deux, $NOMS!"**  aﬀiche "Bonjour à vous deux, binôme1 binôme2!" (où binôme1 et binôme2 sont nos deux noms) , on a le resultat: Bonjour à vous deux, TAGNE WU!
+8. La commande `echo "Bonjour à vous deux, $NOMS!"`  aﬀiche  __"Bonjour à vous deux, binôme1 binôme2!"__ (où binôme1 et binôme2 sont nos deux noms) , on a le resultat: Bonjour à vous deux, TAGNE WU!
 
-9. La commande **unset** supprime la variable donc pas d'espace mémoire pour la variable, alors que une variable peut exister mais n'a pas de contenu d'où il ya une allocation memoire  pour cette variable .
+9. La commande `unset` supprime la variable donc pas d'espace mémoire pour la variable, alors que une variable peut exister mais n'a pas de contenu d'où il ya une allocation memoire  pour cette variable .
 
-10. la commande permettant d'écrire ceci: **echo '$HOME = '"$HOME"** qui nous donne le résultat suivant: $HOME =/home/user.
+10. la commande permettant d'écrire ceci: `echo '$HOME = '"$HOME"` qui nous donne le résultat suivant: $HOME =/home/user.
 
 ## Programmation Bash
 
-Pour ajourter le chemin vers script à notre PATH de manière permanente, on utilise la commande**sudo vim /etc/environement** pour le modifier. On ajouter **/home/user/script:**. <br>
+Pour ajourter le chemin vers script à notre PATH de manière permanente, on utilise la commande `sudo vim /etc/environement` pour le modifier. On ajouter **/home/user/script:**. <br>
 **PATH="/HOME/user/scrip:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"**
 
 ### Exercice 2. Contrôle de mot de passe
-
+```
 <html>#!/bin/bash <br>
 
 <html>PASSWORD="ilovelinux" <br>
@@ -45,9 +45,9 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 <html>    echo -e "\nMot de passe invalide" #Le -e du echo permet d'activer les retours à la ligne via \n. On n'oublie pas les $ des variables
  <br>
 <html>fi <br>
-   
+   ```
    ### Exercice 3. Expressions rationnelles 
-
+```
 <html>#!/bin/bash <br>
 
 <html>function is_number() <br>
@@ -65,11 +65,11 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 <html>else <br>
 <html>    echo -e "\nsaisi incorrect" <br>
 <html>fi <br>
-
+```
 
 
 ### Exercice 4. Contrôle d’utilisateur
-
+```
 <html>#!/bin/bash <br>
 <html>
 <html>nom_du_script=$0  # on recupère le nom du  script <br>
@@ -84,11 +84,11 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 <html>else
 <html>        echo -e "\nUtilisateur  n'existe pas! " <br>
 <html>fi <br>
-
+```
 
 
 ### Exercice 5. Factorielle
-
+```
 <html>#!/bin/bash <br>
 <html>fact=1 <br>
 <html>for i in $(seq 1 $1)  # on recupère les nombres compris entre 1 et le nombre dont on veux le factoriel <br>
@@ -96,11 +96,11 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 <html>    fact=$[fact*i]  # on fait une multiplication recursive  jusqu'à ce que on arrive  sur le nombre donc on veut le factorielle <br>
 <html>done <br>
 <html>echo -e "\nFactorielle de $1= $fact" 
-
+```
 
 
 ### Exercice 6. Le juste prix
-
+```
 <html>#!/bin/bash <br>
 
 <html>RAM=$[$RANDOM%1000 | bc] # ici on genère un nombre compris entre  1 et 1000 en utilisant bc qui se charge de faire la géneartion du nombre <br>
@@ -118,9 +118,11 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 <html>    echo -e "Gagné !" <br>
 <html>fi<br>
 <html>#done
+```
+
 
 ### Exercice 7. Statistiques
-
+```
 <html>#!/bin/bash<br>
 
 <html>checkInt(){<br>
@@ -159,4 +161,4 @@ Pour ajourter le chemin vers script à notre PATH de manière permanente, on uti
 <html> 	max=$tmp;<br>
 <html> fi<br>
 <html> echo -e "\nLe max est $max, le min est $min, la moyenne est $(( ($a + $b + $c) / 3))"<br>
-
+```
